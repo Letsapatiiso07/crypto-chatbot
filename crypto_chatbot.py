@@ -1,7 +1,5 @@
 import requests
-import json
 from datetime import datetime
-import time
 
 class CryptoChatbot:
     def __init__(self):
@@ -28,7 +26,7 @@ class CryptoChatbot:
 • trending - Show trending coins
 • market <coin> - Get market cap info
 • compare <coin1> <coin2> - Compare two cryptocurrencies
-• news - Get market sentiment
+• news - Global market overview
 • quit - Exit the chatbot
 
 Examples:
@@ -65,7 +63,6 @@ Examples:
             
             coin_data = data[coin_id]
             price_usd = coin_data['usd']
-            price_btc = coin_data.get('usd_24h_change', 0)
             change_24h = coin_data.get('usd_24h_change', 0)
             market_cap = coin_data.get('usd_market_cap', 0)
             
@@ -234,7 +231,7 @@ Examples:
             return f"❌ Error comparing coins: {str(e)}"
     
     def get_news_sentiment(self, args=None):
-        """Get market sentiment and fear & greed index"""
+        """Get a global market overview from CoinGecko"""
         try:
             # Get global market data
             url = f"{self.base_url}/global"
@@ -274,12 +271,7 @@ Examples:
         args = ' '.join(parts[1:]) if len(parts) > 1 else None
         
         if command in self.commands:
-            if command in ['price', 'market', 'compare'] and not args:
-                return self.commands[command](args)
-            elif command == 'top':
-                return self.commands[command](args)
-            else:
-                return self.commands[command](args)
+            return self.commands[command](args)
         else:
             return f"❓ Command '{command}' not recognized. Type 'help' for available commands."
     
