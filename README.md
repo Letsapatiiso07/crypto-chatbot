@@ -87,4 +87,4 @@ For learning only; this is not investment advice.
 
 Tiiso Letsapa, Letsapamyron07@gmail.com
 
-MIT License, see [LICENSE](LICENSE).
+Copyright Tiiso Letsapa. All rights reserved, see [LICENSE](LICENSE).
